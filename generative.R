@@ -1,6 +1,7 @@
 # load packages ----------------------------------------------------------------
 
 library(tidyverse)
+library(scico)
 
 # function: build art ----------------------------------------------------------
 
@@ -23,6 +24,9 @@ build_art(
   adjustment = 0
 ) %>%
   ggplot(aes(x = x * t, y = y * t)) +
-  geom_point() +
+  geom_point(aes(size = t, color = t, fill = t),
+             alpha = 0.5, shape = "square filled", show.legend = FALSE) +
   coord_equal() +
-  theme_void()
+  theme_void() +
+  scale_color_scico(palette = "berlin") +
+  scale_fill_scico(palette = "berlin")
